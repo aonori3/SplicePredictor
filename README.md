@@ -1,43 +1,18 @@
 # SplicePredictor
 
-SplicePredictor is a convolutional neural network for genomic sequence classification.
+SplicePredictor is a deep learning model for predicting splice sites in genomic sequences.
 
-## Setup
+## Overview
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/aonori3/SplicePredictor.git
-   cd SplicePredictor
-   ```
+SplicePredictor utilizes a convolutional neural network (CNN) architecture to classify DNA sequences as splice sites or non-splice sites. The model is designed to identify and predict the locations of intron-exon boundaries in pre-mRNA sequences.
 
-2. Install required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Features
 
-## Usage
-
-1. To train the model:
-   ```bash
-   python train_splicepredictor.py
-   ```
-
-2. To use the trained model for predictions, use the following Python code:
-   ```python
-   from tensorflow.keras.models import load_model
-   
-   model = load_model('splicepredictor.h5')
-   predictions = model.predict(your_input_data)
-   ```
-
-## Model Architecture
-
-The SplicePredictor model uses multiple convolutional blocks followed by dense layers for classification. For more details, see `splicepredictor.py`.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+- Convolutional neural network architecture
+- Genomic sequence classification
+- Splice site prediction
+- TensorFlow-based implementation
 
 ## Contact
 
-For any questions or concerns, please contact the author at aoiotani@college.harvard.edu.
+Please contact aoiotani@college.harvard.edu for any inquiries or questions.
