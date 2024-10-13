@@ -1,0 +1,66 @@
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore virtual environment directories
+venv/
+env/
+.virtualenv/
+*.venv
+
+# Ignore log files and temporary files
+*.log
+*.tmp
+
+# Ignore package management files
+*.egg-info/
+.eggs/
+*.egg
+*.whl
+
+# Ignore cache and build directories
+build/
+dist/
+*.tar.gz
+*.zip
+
+# Ignore Python environment settings
+*.env
+.env
+
+# Ignore TensorFlow checkpoints and models
+checkpoints/
+*.ckpt
+*.h5
+*.hdf5
+*.pb
+
+# Ignore model weights and training logs
+model_weights/
+training_logs/
+
+# Ignore VSCode settings (if you're using VSCode)
+.vscode/
+
+# Ignore data files (optional)
+*.csv
+*.tsv
+*.xlsx
+*.json
+*.hdf5
+data/
+
+# Ignore debugging metadata
+*.prof
+*.out
+*.err
+
