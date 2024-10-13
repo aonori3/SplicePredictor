@@ -4,14 +4,7 @@ SplicePredictor is a deep learning model for predicting splice sites in genomic 
 
 ## Overview
 
-SplicePredictor utilizes a convolutional neural network (CNN) architecture to classify DNA sequences as splice sites or non-splice sites. The model is designed to identify and predict the locations of intron-exon boundaries in pre-mRNA sequences.
-
-## Features
-
-- Convolutional neural network architecture
-- Genomic sequence classification
-- Splice site prediction
-- TensorFlow-based implementation
+SplicePredictor utilizes a recurrent neural network (RNN) architecture, specifically using GRU layers, to classify DNA sequences as splice sites or non-splice sites. The model is designed to identify and predict the locations of intron-exon boundaries in pre-mRNA sequences by learning from sequential patterns in the DNA data.
 
 ## Contact
 
