@@ -48,15 +48,16 @@ checkpoints/
 model_weights/
 training_logs/
 
-# Ignore VSCode settings (if you're using VSCode)
+# Ignore VSCode setting
 .vscode/
 
-# Ignore data files (optional)
+# Ignore data files
 *.csv
 *.tsv
 *.xlsx
 *.json
 *.hdf5
+homo_sapiens/
 data/
 
 # Ignore debugging metadata
