@@ -12,24 +12,22 @@ def one_hot_encode(seq):
     return one_hot_encoded[:, :4]  # Exclude the last column (for 'N')
 
 def get_np_array(oversampling=0, downsampling=0):
-    data = {'donor': [], 'acceptor': [], 'other': []}
-    flanking_length = FLANKING_LEN
+    data = {seq_type: [] for seq_type in ['donor', 'acceptor', 'other']}
     
-    for type_seq in ['donor', 'acceptor', 'other']:
+    for seq_type in data:
         for i in range(0, 19305, 1000):
-            file_name = f"{type_seq}_seqs_{i}_{i+1000}_flank_{flanking_length}.txt"
-            with open(file_name) as fle:
-                seqs = [line[2:].rstrip() for line in fle if line.startswith(">>")]
-            data[type_seq].extend(seqs)
+            file_name = f"{seq_type}_seqs_{i}_{i+1000}_flank_{FLANKING_LEN}.txt"
+            with open(file_name) as f:
+                data[seq_type].extend([line[2:].rstrip() for line in f if line.startswith(">>")])
     
     if oversampling:
-        data['donor'] = resample(data['donor'], n_samples=oversampling, random_state=1)
-        data['acceptor'] = resample(data['acceptor'], n_samples=oversampling, random_state=1)
+        for seq_type in ['donor', 'acceptor']:
+            data[seq_type] = resample(data[seq_type], n_samples=oversampling, random_state=1)
     if downsampling:
         data['other'] = resample(data['other'], n_samples=downsampling, random_state=1)
     
-    all_seqs = data['donor'] + data['acceptor'] + data['other']
-    labels = [0]*len(data['donor']) + [1]*len(data['acceptor']) + [2]*len(data['other'])
+    all_seqs = [seq for seqs in data.values() for seq in seqs]
+    labels = [i for i, seqs in enumerate(data.values()) for _ in seqs]
     
     X = np.array([one_hot_encode(seq) for seq in all_seqs])
     Y = np.array(labels)
@@ -39,14 +37,14 @@ def get_np_array(oversampling=0, downsampling=0):
 def get_np_array_species(flanking_len, species_name):
     arr_seqs = []
     y_arr = []
-    for type_seq in ['donor', 'acceptor', 'other']:
-        file_name = f"{species_name}_{type_seq}_seqs_flank_{flanking_len}.txt"
+    label_map = {'donor': 0, 'acceptor': 1, 'other': 2}
+    
+    for seq_type in label_map:
+        file_name = f"{species_name}_{seq_type}_seqs_flank_{flanking_len}.txt"
         with open(file_name, 'r') as file:
             for line in file:
                 if line.startswith(">>"):
-                    seq = line[2:].strip()
-                    one_hot_seq = one_hot_encode(seq)
-                    arr_seqs.append(one_hot_seq)
-                    y_arr.append({'donor': 0, 'acceptor': 1, 'other': 2}[type_seq])
+                    arr_seqs.append(one_hot_encode(line[2:].strip()))
+                    y_arr.append(label_map[seq_type])
 
     return np.array(arr_seqs), np.array(y_arr)

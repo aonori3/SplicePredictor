@@ -1,8 +1,8 @@
-pyensemblrest
-ensembl_rest
-numpy
-pandas
-seaborn
-tensorflow
-matplotlib
-scikit-learn
+numpy==1.21.5
+pandas==1.3.5
+seaborn==0.11.2
+tensorflow==2.8.0
+matplotlib==3.5.2
+scikit-learn==1.0.2
+pyensemblrest==0.3.0
+ensembl_rest==0.9.0
